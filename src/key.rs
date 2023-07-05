@@ -123,6 +123,8 @@ impl SecretKey {
         PublicKey::from_slice(&uncompressed[1..]).expect("The length of the key is correct; qed")
     }
 
+    /// Export stored, unencrypted, plain private key, use with caution
+    /// Do not expose this key in logs, etc. Use only if needed
     pub fn private(&self) -> [u8; 32] {
         self.secret.as_ref().try_into().expect("The length of the key is correct; qed")
     }

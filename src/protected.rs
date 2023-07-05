@@ -17,7 +17,7 @@ impl AsRef<[u8]> for Protected {
 }
 
 impl Protected {
-    /// Create new unprotected set of bytes.
+    /// Create new protected set of bytes.
     pub fn new<T: Into<Vec<u8>>>(m: T) -> Self {
         Protected(m.into())
     }
