@@ -17,6 +17,7 @@ fn main() {
 
     #[cfg(feature = "export-private-key")]
     {
+        //Do not print private key in that way in production code
         let private = secret.private();
         println!("Extracted private key: {}", hex::encode(private));
     }
