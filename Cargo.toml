@@ -27,6 +27,7 @@ hex = "0.4.3"
 [features]
 default = ["secp256k1"]
 pure-rust = ["libsecp256k1"]
+export-private-key = []
 
 [workspace]
 members = [

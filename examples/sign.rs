@@ -16,8 +16,11 @@ fn main() {
     let public = signature.recover(&message).unwrap();
     println!("{:?}", public);
 
-    let private = secret.private();
-    println!("Extracted private key: {}", hex::encode(private));
+    #[cfg(feature = "export-private-key")]
+    {
+        let private = secret.private();
+        println!("Extracted private key: {}", hex::encode(private));
+    }
 
     // Verify the signature
     let res = public.verify(&signature, &message).unwrap();

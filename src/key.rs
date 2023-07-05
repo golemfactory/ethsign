@@ -1,4 +1,3 @@
-use std::convert::TryInto;
 use std::fmt;
 
 use crate::{crypto::Keccak256, ec, error::Error, keyfile::Crypto, protected::Protected};
@@ -125,6 +124,7 @@ impl SecretKey {
 
     /// Export stored, unencrypted, plain private key, use with caution
     /// Do not expose this key in logs, etc. Use only if needed
+    #[cfg(feature = "export-private-key")]
     pub fn private(&self) -> [u8; 32] {
         self.secret.as_ref().try_into().expect("The length of the key is correct; qed")
     }
@@ -159,6 +159,12 @@ mod tests {
             pub_key.address().to_hex::<String>(),
             "005b3bcf82085eededd551f50de7892471ffb272"
         );
+        #[cfg(feature = "export-private-key")]
+        {
+            let secret_key = key.private();
+            assert_eq!(secret_key.to_hex::<String>(), "43cd5154df157a4ec26e3a04f9db252280e0c840b6a209026accb70dc124328c".to_string());
+        }
+
         assert_eq!(&pub_key.bytes().to_hex::<String>(), "782cc7dd72426893ae0d71477e41c41b03249a2b72e78eefcfe0baa9df604a8f979ab94cd23d872dac7bfa8d07d8b76b26efcbede7079f1c5cacd88fe9858f6e");
     }
 

@@ -2,8 +2,6 @@
 
 A library to read JSON keyfiles and sign Ethereum stuff.
 
-Modified for possibility of extracting private key. 
-
 ## Usage:
 ```rust
 use ethsign::{Protected, KeyFile};
