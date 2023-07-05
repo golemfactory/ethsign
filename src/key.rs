@@ -126,6 +126,7 @@ impl SecretKey {
     /// Do not expose this key in logs, etc. Use only if needed
     #[cfg(feature = "export-private-key")]
     pub fn private(&self) -> [u8; 32] {
+        use std::convert::TryInto;
         self.secret
             .as_ref()
             .try_into()
