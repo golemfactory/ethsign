@@ -1,4 +1,4 @@
-use ethsign::{Protected, KeyFile};
+use ethsign::{KeyFile, Protected};
 
 fn main() {
     let file = std::fs::File::open("./res/wallet.json").unwrap();
@@ -10,7 +10,6 @@ fn main() {
     // Sign the message
     let signature = secret.sign(&message).unwrap();
     println!("{:?}", signature);
-
 
     // Recover the signer
     let public = signature.recover(&message).unwrap();
